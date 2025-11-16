@@ -1,6 +1,11 @@
 import { Todo } from "../models/Todo";
 
-export function addTodo(todo: Todo[], title: string): Todo[] {
+export function addTodo(todos: Todo[], text: string): Todo[] {
 
-    throw new Error("Function not implemented.");
+    const newTodo: Todo = {
+        id: todos.length + 1,
+        text,
+        done: false
+    }
+    return [...todos, newTodo];
 }
