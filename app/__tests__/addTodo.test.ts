@@ -21,5 +21,11 @@ describe("addTodo", () => {
 
     expect(result[0].text).toBe("Trimmed Todo");
   });
-  
+
+  it("should not add an empty todo item", () => {
+    const todos: Todo[] = [];
+    const result = addTodo(todos, " ");
+
+    expect(result).toHaveLength(0);
+  });
 });
