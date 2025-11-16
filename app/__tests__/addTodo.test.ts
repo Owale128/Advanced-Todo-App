@@ -11,7 +11,7 @@ describe('addTodo', () => {
     expect(result[0]).toMatchObject({
         id: 1,
         text:'New Todo',
-        completed: false
+        done: false
     })
   });
 })

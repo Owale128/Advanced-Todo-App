@@ -1,11 +1,11 @@
 export class Todo {
   id: number;
   text: string;
-  completed: boolean;
+  done: boolean;
 
-  constructor(id: number, text: string, completed: boolean = false) {
+  constructor(id: number, text: string, done: boolean = false) {
     this.id = id;
     this.text = text;
-    this.completed = completed;
+    this.done = done;
   }
 }
