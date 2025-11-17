@@ -7,7 +7,6 @@ describe("addTodo", () => {
     const result = addTodo(todos, "New Todo");
 
     expect(result).toHaveLength(1);
-
     expect(result[0]).toMatchObject({
       id: 1,
       text: "New Todo",
