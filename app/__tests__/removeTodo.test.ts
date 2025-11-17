@@ -1,5 +1,5 @@
 import { Todo } from "../models/Todo";
-import { deleteTodo } from "../utils/todoUtilities";
+import { removeTodo } from "../utils/todoUtilities";
 
 describe("removeTodo", () => {
   it("should remove todo with correct id", () => {
@@ -8,7 +8,7 @@ describe("removeTodo", () => {
       { id: 2, text: "Second todo", done: false },
       { id: 3, text: "Third todo", done: false },
     ];
-    const result = deleteTodo(todos, 1);
+    const result = removeTodo(todos, 1);
 
     expect(result).toEqual([
       { id: 2, text: "Second todo", done: false },
@@ -22,8 +22,9 @@ describe("removeTodo", () => {
       { id: 1, text: "First todo", done: false },
       { id: 2, text: "Second todo", done: false },
     ];
-    const result = deleteTodo(todos, 999);
+    const result = removeTodo(todos, 999);
 
     expect(result).toEqual(todos);
+    expect(result).toHaveLength(2);
   });
 });
