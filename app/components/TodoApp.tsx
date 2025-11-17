@@ -4,6 +4,7 @@ import { TodosContextValue } from "../models/TodosContextValue";
 import { Todo } from "../models/Todo";
 import { addTodo, removeTodo, toggleTodo } from "../utils/todoUtilities";
 import { TodosContext } from "../context/TodoContext";
+import Header from "./Header";
 import AddTodo from "./AddTodo";
 import Todos from "./Todos";
 
@@ -28,10 +29,14 @@ const TodoApp = () => {
     toggle: handleToggle,
     remove: handleRemove,
   };
+
   return (
     <TodosContext.Provider value={value}>
-      <AddTodo />
-      <Todos />
+      <div className="space-y-8">
+        <Header />
+        <AddTodo />
+        <Todos />
+      </div>
     </TodosContext.Provider>
   );
 };
