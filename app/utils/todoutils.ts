@@ -15,3 +15,8 @@ export function addTodo(todos: Todo[], text: string): Todo[] {
     }
     return [...todos, newTodo];
 }
+
+export const toggleTodo = (todo: Todo[], id: number): Todo[] => {
+
+    throw new Error("Not implemented yet")
+}
