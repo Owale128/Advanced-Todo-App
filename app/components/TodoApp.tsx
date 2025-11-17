@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TodosContextValue } from "../models/TodosContextValue";
 import { Todo } from "../models/Todo";
 import { addTodo, removeTodo, toggleTodo } from "../utils/todoUtilities";
@@ -10,6 +10,18 @@ import Todos from "./Todos";
 
 const TodoApp = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
+  
+  useEffect(() => {
+    const storedTodos = localStorage.getItem("todos");
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+  }, []);
+  
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
 
   const handleAdd: TodosContextValue["add"] = (text) => {
     setTodos((prev) => addTodo(prev, text));
