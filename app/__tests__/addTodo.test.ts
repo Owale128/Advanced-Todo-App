@@ -1,5 +1,5 @@
 import { Todo } from "../models/Todo";
-import { addTodo } from "../utils/todoutils";
+import { addTodo } from "../utils/todoUtilities";
 
 describe("addTodo", () => {
   it("should add a new todo item to the list", () => {
