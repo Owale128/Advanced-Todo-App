@@ -1,6 +1,6 @@
 import { Todo } from "../models/Todo";
 
-export function addTodo(todos: Todo[], text: string): Todo[] {
+export const addTodo =(todos: Todo[], text: string): Todo[] => {
 
     text = text.trim();
 
@@ -18,4 +18,8 @@ export function addTodo(todos: Todo[], text: string): Todo[] {
 
 export const toggleTodo = (todo: Todo[], id: number): Todo[] => {
     return todo.map(todo => todo.id === id? {...todo, done: !todo.done}: todo)
+}
+
+export const deleteTodo = (todos: Todo[], id: number): Todo[] => {
+    throw new Error("Not implemented yet")
 }
