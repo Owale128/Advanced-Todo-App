@@ -17,6 +17,5 @@ export function addTodo(todos: Todo[], text: string): Todo[] {
 }
 
 export const toggleTodo = (todo: Todo[], id: number): Todo[] => {
-
-    throw new Error("Not implemented yet")
+    return todo.map(todo => todo.id === id? {...todo, done: !todo.done}: todo)
 }
