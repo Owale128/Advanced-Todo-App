@@ -12,15 +12,19 @@ const AddTodo = () => {
     }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 text-2xl">
-      <input 
-      type="text"
-      value={inputValue}
-      onChange={(e) => setInputValue(e.target.value)}
-      className="border border-black rounded-md p-1 text-center font-medium"
+    <form onSubmit={handleSubmit} className="flex items-center gap-2 pb-4 border-b border-gray-300 mb-6">
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder="Lägg till en uppgift..."
+        className="flex-1 bg-transparent border-none outline-none text-gray-700 placeholder-gray-400 text-lg"
       />
-      <button type="submit" className="border cursor-pointer hover:bg-black hover:text-white transition duration-200">
-        Spara
+      <button
+        type="submit"
+        className="text-gray-500 hover:text-gray-700 transition duration-150 text-base uppercase tracking-wide"
+      >
+        + Lägg till
       </button>
     </form>
   )
