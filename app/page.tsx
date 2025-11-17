@@ -2,9 +2,10 @@ import TodoApp from "./components/TodoApp";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-8 items-center justify-center min-h-screen text-3xl font-bold">
-      <h1>Advanced Todo App</h1>
-      <TodoApp />
+    <main className="flex items-center justify-center min-h-screen p-8">
+      <div className="w-full max-w-2xl bg-white rounded-lg shadow-2xl p-12">
+        <TodoApp />
+      </div>
     </main>
   );
 }
