@@ -1,7 +1,10 @@
+'use client'
 import { useState } from "react";
 import { TodosContextValue } from "../models/TodosContextValue";
 import { Todo } from "../models/Todo";
 import { addTodo, removeTodo, toggleTodo } from "../utils/todoUtilities";
+import { TodosContext } from "../context/TodoContext";
+import AddTodo from "./AddTodo";
 
 const TodoApp = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -18,7 +21,16 @@ const TodoApp = () => {
     setTodos((prev) => removeTodo(prev, id));
   };
 
-  return <div></div>;
+  const value: TodosContextValue = {
+    todos,
+    add: handleAdd,
+    toggle: handleToggle,
+    remove: handleRemove
+  }
+  return (
+  <TodosContext.Provider value={value}>
+    <AddTodo />
+  </TodosContext.Provider>)
 };
 
 export default TodoApp;
