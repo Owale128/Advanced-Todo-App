@@ -4,24 +4,23 @@ import { TodosContextValue } from "../models/TodosContextValue";
 import { Todo } from "../models/Todo";
 import { addTodo, removeTodo, toggleTodo } from "../utils/todoUtilities";
 import { TodosContext } from "../context/TodoContext";
-import Header from "./Header";
-import AddTodo from "./AddTodo";
-import Todos from "./Todos";
+import Header from "../components/Header";
+import AddTodo from "../components/AddTodo";
+import Todos from "../components/Todos";
 
 const TodoApp = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-  
+
   useEffect(() => {
     const storedTodos = localStorage.getItem("todos");
     if (storedTodos) {
       setTodos(JSON.parse(storedTodos));
     }
   }, []);
-  
+
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
-
 
   const handleAdd: TodosContextValue["add"] = (text) => {
     setTodos((prev) => addTodo(prev, text));
@@ -44,11 +43,13 @@ const TodoApp = () => {
 
   return (
     <TodosContext.Provider value={value}>
-      <div className="space-y-8">
-        <Header />
-        <AddTodo />
-        <Todos />
-      </div>
+      <main className="flex items-center justify-center min-h-screen p-8">
+        <div className="w-full max-w-2xl bg-white rounded-lg shadow-2xl p-12 space-y-8">
+          <Header />
+          <AddTodo />
+          <Todos />
+        </div>
+      </main>
     </TodosContext.Provider>
   );
 };
