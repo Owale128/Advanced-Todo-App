@@ -22,7 +22,7 @@ const AddTodo = () => {
       />
       <button
         type="submit"
-        className="text-gray-500 hover:text-gray-700 transition duration-150 text-base uppercase tracking-wide"
+        className="text-gray-500 hover:text-gray-700 transition duration-150 text-base uppercase tracking-wide cursor-pointer"
       >
         + Lägg till
       </button>
