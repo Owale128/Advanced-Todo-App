@@ -41,7 +41,7 @@ const Register = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="border p-8 rounded-lg space-y-6 w-full max-w-md"
+          className="border p-8 rounded-lg space-y-6 w-full max-w-sm"
         >
           <FormField
             control={form.control}
