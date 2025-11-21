@@ -8,7 +8,7 @@ const Todos = () => {
       {todos.map((todo) => (
         <li
           key={todo.id}
-          className="flex items-center gap-3 py-3 border-b border-gray-200 group"
+          className="flex items-center gap-3 md:gap-6 py-3 border-b border-gray-200 group"
         >
           <input
             type="checkbox"
@@ -17,10 +17,10 @@ const Todos = () => {
             className="w-5 h-5 cursor-pointer accent-gray-700"
           />
           <span
-            className={`flex-1 text-2xl text-center ${
+            className={`flex-1 text-xl text-center wrap-break-word overflow-hidden ${
               todo.done
-                ? "line-through text-gray-400"
-                : "text-gray-700"
+                ? "line-through text-red-800"
+                : "text-green-800"
             }`}
           >
             {todo.text}

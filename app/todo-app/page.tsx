@@ -43,8 +43,8 @@ const TodoApp = () => {
 
   return (
     <TodosContext.Provider value={value}>
-      <main className="flex items-center justify-center min-h-screen p-8">
-        <div className="w-full max-w-2xl bg-white rounded-lg shadow-2xl p-12 space-y-8">
+      <main className="flex items-center justify-center min-h-screen p-4">
+        <div className="w-full max-w-xl bg-white rounded-lg shadow-2xl p-6 md:p-12 space-y-8">
           <Header />
           <AddTodo />
           <Todos />

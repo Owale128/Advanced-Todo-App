@@ -12,12 +12,13 @@ const AddTodo = () => {
     }
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center gap-2 pb-4 border-b border-gray-300 mb-6">
+    <form onSubmit={handleSubmit} className="flex items-center gap-2 pb-4 border-b border-gray-300 mb-4">
       <input
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Lägg till en uppgift..."
+        maxLength={100}
         className="flex-1 bg-transparent border-none outline-none text-gray-700 placeholder-gray-400 text-lg"
       />
       <button

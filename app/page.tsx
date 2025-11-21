@@ -34,12 +34,12 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen p-8 gap-10">
+    <main className="flex flex-col items-center justify-center min-h-screen p-4 gap-10 ">
       <h1 className="text-5xl tracking-wide">Login</h1>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="border p-8 rounded-lg space-y-6 w-full max-w-sm"
+          className="border p-8 rounded-lg space-y-6 w-full max-w-sm shadow-2xl"
         >
           <FormField
             control={form.control}
