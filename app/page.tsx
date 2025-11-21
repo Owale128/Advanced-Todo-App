@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { loginSchema } from "./lib/schemas/auth";
+import { loginSchema } from "../lib/schemas/auth";
 import z from "zod";
 import Link from "next/link";
 
@@ -35,11 +35,11 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-8 gap-10">
-      <h1 className="text-5xl tracking-wide">Login page</h1>
+      <h1 className="text-5xl tracking-wide">Login</h1>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="border p-8 rounded-lg space-y-6 w-96"
+          className="border p-8 rounded-lg space-y-6 w-full max-w-sm"
         >
           <FormField
             control={form.control}
@@ -72,7 +72,7 @@ export default function Home() {
           </Button>
           <div className="flex gap-2 justify-center ">
             <p>Inget konto? </p>
-            <Link href="/register" className="text-blue-500 underline">
+            <Link href="/registrera" className="text-blue-500 underline">
               Registrera dig här
             </Link>
           </div>
