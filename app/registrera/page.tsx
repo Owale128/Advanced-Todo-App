@@ -41,7 +41,7 @@ const Register = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="border p-8 rounded-lg space-y-6 w-full max-w-sm shadow-2xl"
+          className="border p-8 rounded-lg space-y-6 w-full max-w-sm shadow-2xl bg-white"
         >
           <FormField
             control={form.control}
@@ -87,7 +87,7 @@ const Register = () => {
           </Button>
           <div className="flex gap-2 justify-center ">
             <p>Har redan ett konto? </p>
-            <Link href="/" className="text-blue-500 underline">
+            <Link href="/" className="text-blue-500 underline cursor-pointer">
               Logga in
             </Link>
           </div>
