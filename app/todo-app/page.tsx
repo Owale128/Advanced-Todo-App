@@ -1,12 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
-import { TodosContextValue } from "../models/TodosContextValue";
 import { Todo } from "../models/Todo";
-import { addTodo, removeTodo, toggleTodo } from "../utils/todoUtilities";
-import { TodosContext } from "../context/TodoContext";
-import Header from "../components/Header";
-import AddTodo from "../components/AddTodo";
 import Todos from "../components/Todos";
+import Header from "../components/Header";
+import { useEffect, useState } from "react";
+import AddTodo from "../components/addTodo/AddTodo";
+import { TodosContext } from "../context/TodoContext";
+import { TodosContextValue } from "../models/TodosContextValue";
+import { addTodo, removeTodo, toggleTodo } from "../utils/todoUtilities";
 
 const TodoApp = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
