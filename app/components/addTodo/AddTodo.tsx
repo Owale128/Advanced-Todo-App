@@ -1,7 +1,7 @@
 import { TodosContext } from "@/app/context/TodoContext";
 import { FormEvent, useContext, useState } from "react";
 import AddTodoView from "./AddTodoView";
-2;
+
 const AddTodo = () => {
   const [inputValue, setInputValue] = useState("");
   const { add } = useContext(TodosContext);
