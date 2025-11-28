@@ -23,8 +23,8 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen p-4 gap-10 ">
-      <h1 className="text-5xl tracking-wide">Login</h1>
+    <main className="flex flex-col items-center justify-center min-h-screen p-4 gap-10 auth-background">
+      <h1 className="text-5xl tracking-wide text-gray-800">Login</h1>
       <HomeView form={form} onSubmit={onSubmit} />
     </main>
   );
