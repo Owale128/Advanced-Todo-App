@@ -9,7 +9,7 @@ const RegisterView = ({ form, onSubmit }: RegisterViewProps) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="border p-8 rounded-lg space-y-6 w-full max-w-sm shadow-2xl bg-white"
+        className="backdrop-blur-sm p-8 rounded-lg space-y-6 w-full max-w-sm shadow-2xl"
       >
         <FormField
           control={form.control}

@@ -16,7 +16,7 @@ const HomeView = ({ form, onSubmit }: HomeViewProps) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="border p-8 rounded-lg space-y-6 w-full max-w-sm shadow-2xl bg-white"
+        className="backdrop-blur-sm p-8 rounded-lg space-y-6 w-full max-w-sm shadow-2xl"
       >
         <FormField
           control={form.control}
@@ -25,7 +25,7 @@ const HomeView = ({ form, onSubmit }: HomeViewProps) => {
             <FormItem>
               <FormLabel className="text-lg">Namn</FormLabel>
               <FormControl>
-                <Input placeholder="" type="text" {...field} />
+                <Input placeholder="" type="text" className="text-white" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -38,7 +38,7 @@ const HomeView = ({ form, onSubmit }: HomeViewProps) => {
             <FormItem>
               <FormLabel className="text-lg">Lösenord</FormLabel>
               <FormControl>
-                <Input placeholder="" type="password" {...field} />
+                <Input placeholder="" type="password" className="text-white" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -51,7 +51,7 @@ const HomeView = ({ form, onSubmit }: HomeViewProps) => {
           <p>Inget konto? </p>
           <Link
             href="/registrera"
-            className="text-blue-500 underline cursor-pointer"
+            className="text-blue-700 underline cursor-pointer"
           >
             Registrera dig här
           </Link>
