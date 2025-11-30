@@ -26,8 +26,9 @@ const Register = () => {
         password: values.password,
       });
 
-      if (response.status === 200) {
-        router.push("/");
+      if (response.status === 201) {
+        alert("Konto skapat! Du är nu inloggad.");
+        router.push("/todo-app");
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.data?.error) {
