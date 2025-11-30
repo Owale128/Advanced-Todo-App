@@ -65,7 +65,7 @@ const RegisterView = ({ form, onSubmit }: RegisterViewProps) => {
         </Button>
         <div className="flex gap-2 justify-center ">
           <p>Har redan ett konto? </p>
-          <Link href="/" className="text-blue-500 underline cursor-pointer">
+          <Link href="/" className="text-blue-700 cursor-pointer hover:underline">
             Logga in
           </Link>
         </div>
