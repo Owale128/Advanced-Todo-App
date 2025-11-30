@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import connectDB from "@/lib/mongodb";
 import User from "@/app/models/User";
 
@@ -45,10 +46,26 @@ export async function POST(request: NextRequest) {
       password: hashedPassword,
     });
 
-    return NextResponse.json(
+    const token = jwt.sign(
+      { userId: user._id, username: user.username },
+      process.env.JWT_SECRET!,
+      { expiresIn: "7d" }
+    );
+
+    const response = NextResponse.json(
       { message: "User created successfully", userId: user._id },
       { status: 201 }
     );
+
+    response.cookies.set("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 60 * 24 * 7,
+      path: "/",
+    });
+
+    return response;
   } catch (error) {
     console.error("Register error:", error);
     return NextResponse.json(
