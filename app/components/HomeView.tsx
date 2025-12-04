@@ -61,7 +61,7 @@ const HomeView = ({ form, onSubmit }: HomeViewProps) => {
           <p>Inget konto? </p>
           <Link
             href="/registrera"
-            className="text-blue-700 underline cursor-pointer"
+            className="text-blue-700 cursor-pointer hover:underline"
           >
             Registrera dig här
           </Link>
