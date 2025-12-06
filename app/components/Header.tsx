@@ -2,10 +2,10 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
-import { ThemeToggle } from "./ThemeToggle";
 import { LogOut } from "lucide-react";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const router = useRouter();
