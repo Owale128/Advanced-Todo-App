@@ -6,6 +6,7 @@ import HomeView from "./components/HomeView";
 import { loginSchema } from "../lib/schemas/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import { toast } from "sonner";
 
 export default function Home() {
   const router = useRouter();
@@ -26,13 +27,14 @@ export default function Home() {
       });
 
       if (response.status === 200) {
+        toast.success("Inloggad!");
         router.push("/todo-app");
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.data?.error) {
-        alert(error.response.data.error);
+        toast.error(error.response.data.error);
       } else {
-        alert("Inloggning misslyckades. Var vänlig försök igen!");
+        toast.error("Inloggning misslyckades. Var vänlig försök igen!");
       }
     }
   };
