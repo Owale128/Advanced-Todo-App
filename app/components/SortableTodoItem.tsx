@@ -9,7 +9,7 @@ const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodo
     id: todo._id,
   });
 
-  const style = {
+  const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? 0.5 : 1,
@@ -39,7 +39,7 @@ const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodo
       exit={{ opacity: 0, x: 20, height: 0 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
     >
-       <div className="flex items-center justify-end gap-2 text-xs">
+       <div className="flex items-center justify-end text-xs">
         <motion.button
           onClick={cyclePriority}
           className={`inline-block w-3 h-3 rounded-full cursor-pointer ${priorityColors[todo.priority]}`}
@@ -53,7 +53,7 @@ const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodo
         <motion.button
           {...attributes}
           {...listeners}
-          className="cursor-grab active:cursor-grabbing text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition text-xl"
+          className="cursor-grab mb-1 active:cursor-grabbing text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition text-xl"
           aria-label="Drag handle"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
@@ -64,7 +64,7 @@ const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodo
           type="checkbox"
           checked={todo.done}
           onChange={() => toggle(todo._id)}
-          className="w-5 h-5 cursor-pointer accent-gray-700 dark:accent-gray-400"
+          className="w-4 h-4 cursor-pointer accent-gray-700 dark:accent-gray-400"
         />
         <motion.span
           className={`flex-1 text-lg wrap-break-word overflow-hidden text-center ${
