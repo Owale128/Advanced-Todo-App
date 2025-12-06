@@ -5,6 +5,7 @@ import { useState } from "react";
 import { SortableTodoItemProps } from "../models/SortableTodoItemProps";
 import { Priority } from "../models/Todo";
 import ConfirmDialog from "./ConfirmDialog";
+import { Menu } from "lucide-react";
 
 const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodoItemProps) => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -51,7 +52,7 @@ const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodo
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
-          ☰
+          <Menu size={20}/>
         </motion.button>
         <motion.button
           onClick={cyclePriority}
@@ -67,10 +68,10 @@ const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodo
           type="checkbox"
           checked={todo.done}
           onChange={() => toggle(todo._id)}
-          className="w-4 h-4 cursor-pointer accent-gray-700 dark:accent-gray-400"
+          className="w-5 h-5 md:w-4 md:h-4 cursor-pointer accent-gray-700 dark:accent-gray-400"
         />
         <motion.span
-          className={`flex-1 text-lg wrap-break-word overflow-hidden text-center ${
+          className={`flex-1 text-xl wrap-break-word overflow-hidden text-center ${
             todo.done
               ? "line-through text-red-800 dark:text-red-500"
               : "text-gray-950 dark:text-white"
