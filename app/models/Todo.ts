@@ -1,11 +1,11 @@
-export class Todo {
-  id: number;
+export type Priority = "low" | "medium" | "high";
+
+export interface Todo {
+  _id: string;
   text: string;
   done: boolean;
-
-  constructor(id: number, text: string, done: boolean = false) {
-    this.id = id;
-    this.text = text;
-    this.done = done;
-  }
+  order: number;
+  priority: Priority;
+  category: string;
+  dueDate: string | null;
 }
