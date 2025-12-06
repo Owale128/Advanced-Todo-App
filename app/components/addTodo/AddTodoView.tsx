@@ -26,6 +26,7 @@ const AddTodoView = ({
 
   return (
     <form onSubmit={handleSubmit} className="pb-4 border-b border-gray-300 dark:border-gray-600 mb-4 space-y-3">
+      <h2 className="text-center text-lg font-semibold">Prioritering</h2>
       <div className="flex justify-center gap-2 mb-2">
         {(["low", "medium", "high"] as Priority[]).map((p) => (
           <motion.button
