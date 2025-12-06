@@ -1,39 +1,42 @@
 import { useContext } from "react";
 import { TodosContext } from "../context/TodoContext";
+import { DndContext, DragEndEvent, closestCenter } from "@dnd-kit/core";
+import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { AnimatePresence } from "framer-motion";
+import SortableTodoItem from "./SortableTodoItem";
 
 const Todos = () => {
-  const { todos, toggle, remove } = useContext(TodosContext);
+  const { todos, toggle, remove, updateOrder, updatePriority } = useContext(TodosContext);
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (!over || active.id === over.id) {
+      return;
+    }
+
+    const oldIndex = todos.findIndex((todo) => todo._id === active.id);
+    const newIndex = todos.findIndex((todo) => todo._id === over.id);
+
+    const reorderedTodos = [...todos];
+    const [movedTodo] = reorderedTodos.splice(oldIndex, 1);
+    reorderedTodos.splice(newIndex, 0, movedTodo);
+
+    updateOrder(reorderedTodos);
+  };
+
   return (
-    <ul className="space-y-0">
-      {todos.map((todo) => (
-        <li
-          key={todo.id}
-          className="flex items-center gap-3 md:gap-6 py-3 border-b border-gray-200 group"
-        >
-          <input
-            type="checkbox"
-            checked={todo.done}
-            onChange={() => toggle(todo.id)}
-            className="w-5 h-5 cursor-pointer accent-gray-700"
-          />
-          <span
-            className={`flex-1 text-xl text-center wrap-break-word overflow-hidden px-4 sm:px-6 ${
-              todo.done
-                ? "line-through text-red-800"
-                : "text-green-800"
-            }`}
-          >
-            {todo.text}
-          </span>
-          <button
-            onClick={() => remove(todo.id)}
-            className="text-gray-600 text-3xl hover:text-gray-400 transition duration-150 cursor-pointer"
-          >
-            x
-          </button>
-        </li>
-      ))}
-    </ul>
+    <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+      <SortableContext items={todos.map((todo) => todo._id)} strategy={verticalListSortingStrategy}>
+        <ul className="space-y-0">
+          <AnimatePresence mode="popLayout">
+            {todos.map((todo) => (
+              <SortableTodoItem key={todo._id} todo={todo} toggle={toggle} remove={remove} updatePriority={updatePriority} />
+            ))}
+          </AnimatePresence>
+        </ul>
+      </SortableContext>
+    </DndContext>
   );
 };
 
