@@ -1,8 +1,10 @@
-import { Todo } from "./Todo";
+import { Todo, Priority } from "./Todo";
 
 export interface TodosContextValue {
     todos: Todo[];
-    add: (title: string) => void;
-    toggle: (id: number) => void;
-    remove: (id: number) => void;
+    add: (text: string, priority?: Priority, category?: string, dueDate?: string | null) => void;
+    toggle: (id: string) => void;
+    remove: (id: string) => void;
+    updateOrder: (todos: Todo[]) => void;
+    updatePriority: (id: string, priority: Priority) => void;
 }
