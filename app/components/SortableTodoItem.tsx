@@ -39,17 +39,7 @@ const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodo
       exit={{ opacity: 0, x: 20, height: 0 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
     >
-       <div className="flex items-center justify-end text-xs">
-        <motion.button
-          onClick={cyclePriority}
-          className={`inline-block w-3 h-3 rounded-full cursor-pointer ${priorityColors[todo.priority]}`}
-          title={`Prioritet: ${todo.priority} (klicka för att ändra)`}
-          whileHover={{ scale: 1.3 }}
-          whileTap={{ scale: 0.9, rotate: 180 }}
-          transition={{ duration: 0.2 }}
-        />
-      </div>
-      <div className="flex items-center gap-3">
+       <div className="flex items-center justify-between text-xs">
         <motion.button
           {...attributes}
           {...listeners}
@@ -60,6 +50,16 @@ const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodo
         >
           ☰
         </motion.button>
+        <motion.button
+          onClick={cyclePriority}
+          className={`inline-block w-3 h-3 rounded-full cursor-pointer ${priorityColors[todo.priority]}`}
+          title={`Prioritet: ${todo.priority} (klicka för att ändra)`}
+          whileHover={{ scale: 1.3 }}
+          whileTap={{ scale: 0.9, rotate: 180 }}
+          transition={{ duration: 0.2 }}
+        />
+      </div>
+      <div className="flex items-center gap-3">
         <input
           type="checkbox"
           checked={todo.done}
