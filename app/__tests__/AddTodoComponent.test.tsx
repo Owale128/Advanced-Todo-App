@@ -12,22 +12,26 @@ describe("AddTodo Component", () => {
         todos: [],
         add: addMock,
         toggle: () => {},
-        remove: () => {}
+        remove: () => {},
+        updateOrder: () => {},
+        updatePriority: () => {}
     }
 
     render(
-        <TodosContext.Provider value={mockValue}> 
+        <TodosContext.Provider value={mockValue}>
         <AddTodo />
         </TodosContext.Provider>
     )
 
-    const input = screen.getByRole("textbox");
-    const button = screen.getByRole("button", { name: /Lägg till/i})
+    const input = screen.getByPlaceholderText("Lägg till en uppgift...");
+    const mediumButton = screen.getByRole("button", { name: /Medium/i })
+    const submitButton = screen.getByRole("button", { name: /Lägg till/i})
 
     fireEvent.change(input, { target: { value: "New Todo Item"}})
-    fireEvent.click(button)
+    fireEvent.click(mediumButton)
+    fireEvent.click(submitButton)
 
-    expect(addMock).toHaveBeenCalledWith("New Todo Item")
+    expect(addMock).toHaveBeenCalledWith("New Todo Item", "medium", "General", null)
     expect(addMock).toHaveBeenCalledTimes(1)
 });
 });
