@@ -33,9 +33,14 @@ const TodoApp = () => {
     fetchTodos();
   }, [router]);
 
-  const handleAdd: TodosContextValue["add"] = async (text) => {
+  const handleAdd: TodosContextValue["add"] = async (text, priority, category, dueDate) => {
     try {
-      const response = await axios.post("/api/todos", { text });
+      const response = await axios.post("/api/todos", {
+        text,
+        priority: priority || "medium",
+        category: category || "General",
+        dueDate: dueDate || null
+      });
       setTodos((prev) => [response.data.todo, ...prev]);
     } catch (error) {
       console.error("Add todo error:", error);
@@ -67,11 +72,42 @@ const TodoApp = () => {
     }
   };
 
+  const handleUpdateOrder: TodosContextValue["updateOrder"] = async (reorderedTodos) => {
+    try {
+      const todosWithOrder = reorderedTodos.map((todo, index) => ({
+        _id: todo._id,
+        order: index,
+      }));
+
+      await axios.put("/api/todos", { todos: todosWithOrder });
+      setTodos(reorderedTodos);
+    } catch (error) {
+      console.error("Update order error:", error);
+      alert("Kunde inte uppdatera ordningen");
+    }
+  };
+
+  const handleUpdatePriority: TodosContextValue["updatePriority"] = async (id, priority) => {
+    try {
+      const response = await axios.patch(`/api/todos/${id}`, { priority });
+      setTodos((prev) =>
+        prev.map((todo) =>
+          todo._id === id ? response.data.todo : todo
+        )
+      );
+    } catch (error) {
+      console.error("Update priority error:", error);
+      alert("Kunde inte uppdatera prioritet");
+    }
+  };
+
   const value: TodosContextValue = {
     todos,
     add: handleAdd,
     toggle: handleToggle,
     remove: handleRemove,
+    updateOrder: handleUpdateOrder,
+    updatePriority: handleUpdatePriority,
   };
 
   if (loading) {
@@ -85,7 +121,7 @@ const TodoApp = () => {
   return (
     <TodosContext.Provider value={value}>
       <main className="flex items-center justify-center min-h-screen p-4 bg-[#F5F6F8] dark:bg-gray-900">
-        <div className="w-full max-w-xl bg-white dark:bg-gray-800 rounded-lg shadow-2xl p-6 md:p-12 space-y-8 relative">
+        <div className="w-full max-w-2xl bg-white dark:bg-gray-800 rounded-lg shadow-2xl p-6 md:p-12 space-y-8 relative">
           <Header />
           <AddTodo />
           <Todos />
