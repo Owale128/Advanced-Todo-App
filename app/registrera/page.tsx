@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { registerSchema } from "@/lib/schemas/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import { toast } from "sonner";
 
 const Register = () => {
   const router = useRouter();
@@ -27,14 +28,14 @@ const Register = () => {
       });
 
       if (response.status === 201) {
-        alert("Konto skapat! Du är nu inloggad.");
+        toast.success("Konto skapat! Du är nu inloggad.");
         router.push("/todo-app");
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.data?.error) {
-        alert(error.response.data.error)
+        toast.error(error.response.data.error);
       } else {
-        alert("Registrering misslyckades. Var vänlig försök igen!");
+        toast.error("Registrering misslyckades. Var vänlig försök igen!");
       }
     }
   };
