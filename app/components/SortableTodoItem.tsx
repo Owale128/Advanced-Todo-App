@@ -1,10 +1,13 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { SortableTodoItemProps } from "../models/SortableTodoItemProps";
 import { Priority } from "../models/Todo";
+import ConfirmDialog from "./ConfirmDialog";
 
 const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodoItemProps) => {
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: todo._id,
   });
@@ -52,7 +55,7 @@ const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodo
         </motion.button>
         <motion.button
           onClick={cyclePriority}
-          className={`inline-block w-3 h-3 rounded-full cursor-pointer ${priorityColors[todo.priority]}`}
+          className={`inline-block w-4 h-4 md:w-3 md:h-3 rounded-full cursor-pointer ${priorityColors[todo.priority]}`}
           title={`Prioritet: ${todo.priority} (klicka för att ändra)`}
           whileHover={{ scale: 1.3 }}
           whileTap={{ scale: 0.9, rotate: 180 }}
@@ -78,7 +81,7 @@ const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodo
           {todo.text}
         </motion.span>
         <motion.button
-          onClick={() => remove(todo._id)}
+          onClick={() => setShowDeleteConfirm(true)}
           className="text-gray-600 dark:text-gray-300 text-3xl hover:text-gray-400 dark:hover:text-gray-500 transition duration-150 cursor-pointer"
           whileHover={{ scale: 1.2, rotate: 90 }}
           whileTap={{ scale: 0.9 }}
@@ -86,6 +89,19 @@ const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodo
           x
         </motion.button>
       </div>
+
+      <ConfirmDialog
+        isOpen={showDeleteConfirm}
+        title="Ta bort todo?"
+        message="Är du säker på att du vill ta bort denna uppgift?"
+        confirmText="Ta bort"
+        cancelText="Avbryt"
+        onConfirm={() => {
+          remove(todo._id);
+          setShowDeleteConfirm(false);
+        }}
+        onCancel={() => setShowDeleteConfirm(false)}
+      />
     </motion.li>
   );
 };
