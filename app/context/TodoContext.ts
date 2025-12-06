@@ -5,5 +5,7 @@ export const TodosContext = createContext<TodosContextValue>({
 todos: [],
 add: () => {},
 toggle: () => {},
-remove: () => {}
+remove: () => {},
+updateOrder: () => {},
+updatePriority: () => {}
 })
