@@ -8,21 +8,8 @@ const AddTodoView = ({
   setInputValue,
   priority,
   setPriority,
+  priorityColors
 }: AddTodoViewProps) => {
-  const priorityColors = {
-    low: {
-      base: "bg-green-500 dark:bg-green-500 hover:bg-green-500 dark:hover:bg-green-600",
-      selected: "bg-green-600 dark:bg-green-700 ring-2 ring-green-800 dark:ring-green-300"
-    },
-    medium: {
-      base: "bg-yellow-500 dark:bg-yellow-500 hover:bg-yellow-500 dark:hover:bg-yellow-600",
-      selected: "bg-yellow-600 dark:bg-yellow-700 ring-2 ring-yellow-800 dark:ring-yellow-300"
-    },
-    high: {
-      base: "bg-red-500 dark:bg-red-500 hover:bg-red-500 dark:hover:bg-red-600",
-      selected: "bg-red-600 dark:bg-red-700 ring-2 ring-red-800 dark:ring-red-300"
-    }
-  };
 
   return (
     <form onSubmit={handleSubmit} className="pb-4 -mb-4 border-b border-gray-300 dark:border-gray-600 space-y-3">
@@ -33,7 +20,7 @@ const AddTodoView = ({
             key={p}
             type="button"
             onClick={() => setPriority(p)}
-            className={`px-4 py-1.5 rounded text-sm font-medium text-white transition ${
+            className={`px-4 py-1.5 rounded text-sm font-medium text-white transition cursor-pointer ${
               priority === p
                 ? priorityColors[p].selected
                 : priorityColors[p].base
