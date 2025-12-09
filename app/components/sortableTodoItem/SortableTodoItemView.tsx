@@ -1,37 +1,21 @@
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { SortableTodoItemProps } from "../models/SortableTodoItemProps";
-import { Priority } from "../models/Todo";
-import ConfirmDialog from "./ConfirmDialog";
 import { Menu } from "lucide-react";
+import ConfirmDialog from "../ConfirmDialog";
+import { motion } from "framer-motion";
+import { SortableTodoItemViewProps } from "@/app/models/SortableTodoItemViewProps";
 
-const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodoItemProps) => {
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
-    id: todo._id,
-  });
-
-  const style: React.CSSProperties = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    opacity: isDragging ? 0.5 : 1,
-  };
-
-  const priorityColors = {
-    low: "bg-green-500",
-    medium: "bg-yellow-500",
-    high: "bg-red-500",
-  };
-
-  const cyclePriority = () => {
-    const priorities: Priority[] = ["low", "medium", "high"];
-    const currentIndex = priorities.indexOf(todo.priority);
-    const nextIndex = (currentIndex + 1) % priorities.length;
-    updatePriority(todo._id, priorities[nextIndex]);
-  };
-
+const SortableTodoItemView = ({
+  todo,
+  style,
+  setNodeRef,
+  attributes,
+  listeners,
+  priorityColors,
+  toggle,
+  remove,
+  cyclePriority,
+  showDeleteConfirm,
+  setShowDeleteConfirm,
+}: SortableTodoItemViewProps) => {
   return (
     <motion.li
       ref={setNodeRef}
@@ -43,7 +27,7 @@ const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodo
       exit={{ opacity: 0, x: 20, height: 0 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
     >
-       <div className="flex items-center justify-between text-xs">
+      <div className="flex items-center justify-between text-xs">
         <motion.button
           {...attributes}
           {...listeners}
@@ -52,11 +36,13 @@ const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodo
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Menu size={20}/>
+          <Menu size={20} />
         </motion.button>
         <motion.button
           onClick={cyclePriority}
-          className={`inline-block w-4 h-4 md:w-3 md:h-3 rounded-full cursor-pointer ${priorityColors[todo.priority]}`}
+          className={`inline-block w-4 h-4 md:w-3 md:h-3 rounded-full cursor-pointer ${
+            priorityColors[todo.priority]
+          }`}
           title={`Prioritet: ${todo.priority} (klicka för att ändra)`}
           whileHover={{ scale: 1.3 }}
           whileTap={{ scale: 0.9, rotate: 180 }}
@@ -71,7 +57,7 @@ const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodo
           className="w-5 h-5 md:w-4 md:h-4 cursor-pointer accent-gray-700 dark:accent-gray-400"
         />
         <motion.span
-          className={`flex-1 text-xl wrap-break-word overflow-hidden text-center ${
+          className={`flex-1 text-xl wrap-break-word overflow-hidden text-center px-2 sm:px-6 ${
             todo.done
               ? "line-through text-red-800 dark:text-red-500"
               : "text-gray-950 dark:text-white"
@@ -107,4 +93,4 @@ const SortableTodoItem = ({ todo, toggle, remove, updatePriority }: SortableTodo
   );
 };
 
-export default SortableTodoItem;
+export default SortableTodoItemView;
