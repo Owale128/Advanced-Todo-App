@@ -23,6 +23,7 @@ const ThemeToggle = () => {
       size="icon"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       className="cursor-pointer"
+      title="Byt tema"
     >
       {theme === "dark" ? (
         <Sun className="h-5 w-5" />

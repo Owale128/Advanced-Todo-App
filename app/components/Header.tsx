@@ -58,6 +58,7 @@ const Header = () => {
           size="icon"
           onClick={handleLogout}
           className="cursor-pointer"
+          title="Logga ut"
         >
           <LogOut className="h-5 w-5" />
         </Button>
