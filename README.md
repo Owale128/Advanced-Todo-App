@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Advanced Todo App
 
-## Getting Started
+Next.js-baserad todo-app (app router) med MongoDB och JWT. Skapa, uppdatera och sortera todos med drag-and-drop, samt autentisering med JWT. Demo: https://advanced-todo-app-zeta.vercel.app/. Kan köras lokalt eller via Docker.
 
-First, run the development server:
+## Miljövariabler
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Kopiera `.env.example` till `.env.local` och fyll i:
+
+```
+MONGODB_URI=<din-connection-string>
+JWT_SECRET=<valfritt-hemligt värde>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Lokal utveckling
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Appen startar på `http://localhost:3000`.
 
-## Learn More
+## Köra med Docker
 
-To learn more about Next.js, take a look at the following resources:
+1) Installera en Docker-runtime (Docker Desktop eller Colima).  
+2) Bygg bilden:
+```bash
+docker build -t advanced-todo-app .
+```
+3) Kör med egna env-variabler:
+```bash
+docker run -p 3000:3000 \
+  -e MONGODB_URI=<din-connection-string> \
+  -e JWT_SECRET=<hemligt-värde> \
+  advanced-todo-app
+```
+Eller använd en fil:
+```bash
+docker run -p 3000:3000 --env-file .env.local advanced-todo-app
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Köra via public image (GHCR)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Vill du slippa bygga själv, dra den publicerade imagen:
+```bash
+docker pull ghcr.io/owale128/advanced-todo-app:latest
+docker run -p 3000:3000 --env-file .env.local ghcr.io/owale128/advanced-todo-app:latest
+```
+(eller sätt env med `-e MONGODB_URI=... -e JWT_SECRET=...`).
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deployad på Vercel. Docker används bara för lokalt/egen drift eller portfolio-demo; inga secrets ska bakas in i bilden.
