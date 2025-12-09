@@ -46,11 +46,11 @@ export async function POST(request: NextRequest) {
 
     await connectDB();
 
-    const maxOrderTodo = await TodoModel.findOne({ userId: user.userId })
-      .sort({ order: -1 })
+    const minOrderTodo = await TodoModel.findOne({ userId: user.userId })
+      .sort({ order: 1 })
       .select("order");
 
-    const newOrder = maxOrderTodo ? maxOrderTodo.order + 1 : 0;
+    const newOrder = minOrderTodo ? minOrderTodo.order - 1 : 0;
 
     const todo = await TodoModel.create({
       userId: user.userId,
