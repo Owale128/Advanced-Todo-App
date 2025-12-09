@@ -113,7 +113,13 @@ const TodoApp = () => {
   if (loading) {
     return (
       <main className="flex items-center justify-center min-h-screen p-4 bg-[#F5F6F8] dark:bg-gray-900">
-        <div className="text-xl dark:text-gray-200">Laddar...</div>
+        <div className="flex items-center gap-3 text-xl text-gray-900 dark:text-gray-200">
+          <div
+            className="h-6 w-6 rounded-full border-4 border-gray-300 border-t-gray-700 dark:border-gray-700 dark:border-t-gray-200 animate-spin"
+            aria-label="Laddar"
+          />
+          <span>Laddar...</span>
+        </div>
       </main>
     );
   }
