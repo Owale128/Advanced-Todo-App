@@ -1,12 +1,22 @@
 import { useContext, useState } from "react";
 import { TodosContext } from "../context/TodoContext";
-import { DndContext, DragEndEvent, DragStartEvent, DragOverlay, closestCenter } from "@dnd-kit/core";
-import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import {
+  DndContext,
+  DragEndEvent,
+  DragStartEvent,
+  DragOverlay,
+  closestCenter,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 import { AnimatePresence } from "framer-motion";
-import SortableTodoItem from "./SortableTodoItem";
+import SortableTodoItem from "./sortableTodoItem/SortableTodoItem";
 
 const Todos = () => {
-  const { todos, toggle, remove, updateOrder, updatePriority } = useContext(TodosContext);
+  const { todos, toggle, remove, updateOrder, updatePriority } =
+    useContext(TodosContext);
   const [activeId, setActiveId] = useState<string | null>(null);
 
   const handleDragStart = (event: DragStartEvent) => {
@@ -32,7 +42,9 @@ const Todos = () => {
     updateOrder(reorderedTodos);
   };
 
-  const activeTodo = activeId ? todos.find((todo) => todo._id === activeId) : null;
+  const activeTodo = activeId
+    ? todos.find((todo) => todo._id === activeId)
+    : null;
 
   return (
     <DndContext
@@ -40,11 +52,20 @@ const Todos = () => {
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      <SortableContext items={todos.map((todo) => todo._id)} strategy={verticalListSortingStrategy}>
+      <SortableContext
+        items={todos.map((todo) => todo._id)}
+        strategy={verticalListSortingStrategy}
+      >
         <ul className="space-y-4">
           <AnimatePresence mode="popLayout">
             {todos.map((todo) => (
-              <SortableTodoItem key={todo._id} todo={todo} toggle={toggle} remove={remove} updatePriority={updatePriority} />
+              <SortableTodoItem
+                key={todo._id}
+                todo={todo}
+                toggle={toggle}
+                remove={remove}
+                updatePriority={updatePriority}
+              />
             ))}
           </AnimatePresence>
         </ul>
