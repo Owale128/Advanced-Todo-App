@@ -1,53 +1,53 @@
 # Advanced Todo App
 
-Next.js-baserad todo-app (app router) med MongoDB och JWT. Skapa, uppdatera och sortera todos med drag-and-drop, samt autentisering med JWT. Demo: https://advanced-todo-app-zeta.vercel.app/. Kan köras lokalt eller via Docker.
+Next.js (app router) todo app with MongoDB, JWT auth, and drag-and-drop ordering. Demo: https://advanced-todo-app-zeta.vercel.app/. Run locally or via Docker.
 
-## Miljövariabler
+## Environment variables
 
-Kopiera `.env.example` till `.env.local` och fyll i:
+Copy `.env.example` to `.env.local` and fill in:
 
 ```
-MONGODB_URI=<din-connection-string>
-JWT_SECRET=<valfritt-hemligt värde>
+MONGODB_URI=<your-connection-string>
+JWT_SECRET=<your-secret>
 ```
 
-## Lokal utveckling
+## Local development
 
 ```bash
 npm install
 npm run dev
 ```
 
-Appen startar på `http://localhost:3000`.
+App runs on `http://localhost:3000`.
 
-## Köra med Docker
+## Run with Docker (build it yourself)
 
-1) Installera en Docker-runtime (Docker Desktop eller Colima).  
-2) Bygg bilden:
+1) Install a Docker runtime (Docker Desktop or Colima).  
+2) Build:
 ```bash
 docker build -t advanced-todo-app .
 ```
-3) Kör med egna env-variabler:
+3) Run with your envs:
 ```bash
 docker run -p 3000:3000 \
-  -e MONGODB_URI=<din-connection-string> \
-  -e JWT_SECRET=<hemligt-värde> \
+  -e MONGODB_URI=<your-connection-string> \
+  -e JWT_SECRET=<your-secret> \
   advanced-todo-app
 ```
-Eller använd en fil:
+Or use a file:
 ```bash
 docker run -p 3000:3000 --env-file .env.local advanced-todo-app
 ```
 
-## Köra via public image (GHCR)
+## Run from public image (GHCR)
 
-Vill du slippa bygga själv, dra den publicerade imagen:
+Skip building, pull the published image:
 ```bash
 docker pull ghcr.io/owale128/advanced-todo-app:latest
 docker run -p 3000:3000 --env-file .env.local ghcr.io/owale128/advanced-todo-app:latest
 ```
-(eller sätt env med `-e MONGODB_URI=... -e JWT_SECRET=...`).
+(or set envs with `-e MONGODB_URI=... -e JWT_SECRET=...`).
 
 ## Deploy
 
-Deployad på Vercel. Docker används bara för lokalt/egen drift eller portfolio-demo; inga secrets ska bakas in i bilden.
+Deployed on Vercel. Docker is for local/on-prem use or portfolio demos; never bake secrets into the image.
