@@ -22,7 +22,7 @@ const RegisterView = ({ form, onSubmit }: RegisterViewProps) => {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg">Namn</FormLabel>
+              <FormLabel className="text-lg">Name</FormLabel>
               <FormControl>
                 <Input placeholder="" type="text" {...field} />
               </FormControl>
@@ -35,7 +35,7 @@ const RegisterView = ({ form, onSubmit }: RegisterViewProps) => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg">Lösenord</FormLabel>
+              <FormLabel className="text-lg">Password</FormLabel>
               <FormControl>
                 <Input placeholder="" type="password" {...field} />
               </FormControl>
@@ -48,7 +48,7 @@ const RegisterView = ({ form, onSubmit }: RegisterViewProps) => {
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg">Bekräfta lösenord</FormLabel>
+              <FormLabel className="text-lg">Confirm password</FormLabel>
               <FormControl>
                 <Input placeholder="" type="password" {...field} />
               </FormControl>
@@ -61,12 +61,12 @@ const RegisterView = ({ form, onSubmit }: RegisterViewProps) => {
           className="w-full cursor-pointer text-base"
           disabled={form.formState.isSubmitting}
         >
-          Registrera konto
+          Register account
         </Button>
         <div className="flex gap-2 justify-center ">
-          <p>Har redan ett konto? </p>
+          <p>Already have an account? </p>
           <Link href="/" className="text-blue-700 cursor-pointer hover:underline">
-            Logga in
+            Login here
           </Link>
         </div>
       </form>

@@ -42,7 +42,6 @@ const Register = () => {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-4 gap-10 auth-background">
-      <h1 className="text-5xl tracking-wide text-gray-800">Registrera</h1>
       <RegisterView form={form} onSubmit={onSubmit} />
     </main>
   );
