@@ -29,7 +29,7 @@ const HomeView = ({ form, onSubmit }: HomeViewProps) => {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg">Namn</FormLabel>
+              <FormLabel className="text-lg">Name</FormLabel>
               <FormControl>
                 <Input placeholder="" type="text" className="text-white" {...field} />
               </FormControl>
@@ -42,7 +42,7 @@ const HomeView = ({ form, onSubmit }: HomeViewProps) => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg">Lösenord</FormLabel>
+              <FormLabel className="text-lg">Password</FormLabel>
               <FormControl>
                 <Input placeholder="" type="password" className="text-white" {...field} />
               </FormControl>
@@ -55,15 +55,15 @@ const HomeView = ({ form, onSubmit }: HomeViewProps) => {
           className="w-full cursor-pointer text-base"
           disabled={form.formState.isSubmitting}
         >
-          Logga in
+          Login
         </Button>
         <div className="flex gap-2 justify-center ">
-          <p>Inget konto? </p>
+          <p>No account? </p>
           <Link
             href="/registrera"
             className="text-blue-700 cursor-pointer hover:underline"
           >
-            Registrera dig här
+            Register here
           </Link>
         </div>
       </form>
