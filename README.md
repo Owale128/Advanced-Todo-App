@@ -1,6 +1,6 @@
 # Advanced Todo App
 
-Next.js (app router) todo app with MongoDB, JWT auth, and drag-and-drop ordering. Run locally or via Docker.
+Next.js (app router) todo app with MongoDB, JWT auth, priority levels and drag-and-drop ordering. Run locally or via Docker.
 
 ## Environment variables
 
@@ -50,4 +50,4 @@ docker run -p 3000:3000 --env-file .env.local ghcr.io/owale128/advanced-todo-app
 
 ## Deploy
 
-Deployed on Vercel. Demo: https://advanced-todo-app-zeta.vercel.app/. Never bake secrets into the image.
+Deployed on Vercel, demo: https://advanced-todo-app-zeta.vercel.app/. Never bake secrets into the image.
