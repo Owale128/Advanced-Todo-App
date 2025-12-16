@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import Header from "../components/Header";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -41,5 +41,12 @@ describe("Header Component", () => {
     render(<Header />);
     const today = new Date().toLocaleDateString("sv-SE");
     expect(screen.getByText(today)).toBeInTheDocument();
+  });
+
+  it("should fetch and display username", async () => {
+    render(<Header />);
+    await waitFor(() => {
+      expect(screen.getByText("testuser")).toBeInTheDocument();
+    });
   });
 });
