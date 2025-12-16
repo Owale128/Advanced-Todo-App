@@ -36,4 +36,10 @@ describe("Header Component", () => {
     render(<Header />);
     expect(screen.getByText("to do list")).toBeInTheDocument();
   });
+
+  it("should render current date", () => {
+    render(<Header />);
+    const today = new Date().toLocaleDateString("sv-SE");
+    expect(screen.getByText(today)).toBeInTheDocument();
+  });
 });
