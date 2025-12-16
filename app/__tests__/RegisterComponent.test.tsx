@@ -30,11 +30,11 @@ describe("Register component", () => {
   it("should navigate to home on successful registration", async () => {
     render(<Register />);
 
-    const usernameInput = screen.getByLabelText(/Namn/i);
-    const passwordInput = screen.getByLabelText(/^Lösenord$/i);
-    const confirmPassword = screen.getByLabelText(/^Bekräfta Lösenord$/i);
+    const usernameInput = screen.getByLabelText(/^Name$/i);
+    const passwordInput = screen.getByLabelText(/^Password$/i);
+    const confirmPassword = screen.getByLabelText(/^Confirm password$/i);
     const submitButton = screen.getByRole("button", {
-      name: /Registrera konto/i,
+      name: /Register account/i,
     });
 
     fireEvent.change(usernameInput, { target: { value: "testUser" } });
@@ -50,16 +50,16 @@ describe("Register component", () => {
   it("should show error when password dont't match", async () => {
     render(<Register />);
 
-    fireEvent.change(screen.getByLabelText(/Namn/i), {
+    fireEvent.change(screen.getByLabelText(/^Name$/i), {
       target: { value: "testUser" },
     });
-    fireEvent.change(screen.getByLabelText(/^Lösenord$/i), {
+    fireEvent.change(screen.getByLabelText(/^Password$/i), {
       target: { value: "password123" },
     });
-    fireEvent.change(screen.getByLabelText(/^Bekräfta lösenord$/i), {
+    fireEvent.change(screen.getByLabelText(/^Confirm password$/i), {
       target: { value: "password12" },
     });
-    fireEvent.click(screen.getByRole("button", { name: /Registrera konto/i }));
+    fireEvent.click(screen.getByRole("button", { name: /Register account/i }));
 
     await waitFor(() => {
       expect(screen.getByText(/Passwords do not match/i)).toBeInTheDocument();
