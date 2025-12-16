@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import ConfirmDialog from "../components/ConfirmDialog";
 
 describe("ConfirmDialog Component", () => {
@@ -21,5 +21,10 @@ describe("ConfirmDialog Component", () => {
     render(<ConfirmDialog {...defaultProps} />);
     expect(screen.getByText("Test Title")).toBeInTheDocument();
     expect(screen.getByText("Test message")).toBeInTheDocument();
+  });
+
+  it("should not render when closed", () => {
+    render(<ConfirmDialog {...defaultProps} isOpen={false} />);
+    expect(screen.queryByText("Test Title")).not.toBeInTheDocument();
   });
 });
