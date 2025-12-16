@@ -27,4 +27,10 @@ describe("ConfirmDialog Component", () => {
     render(<ConfirmDialog {...defaultProps} isOpen={false} />);
     expect(screen.queryByText("Test Title")).not.toBeInTheDocument();
   });
+
+  it("should call onConfirm when confirm clicked", () => {
+    render(<ConfirmDialog {...defaultProps} />);
+    fireEvent.click(screen.getByText("Ja"));
+    expect(mockOnConfirm).toHaveBeenCalled();
+  });
 });
