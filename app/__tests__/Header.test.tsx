@@ -1,7 +1,8 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import Header from "../components/Header";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { toast } from "sonner";
 
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
@@ -53,5 +54,11 @@ describe("Header Component", () => {
   it("should show logout button", () => {
     render(<Header />);
     expect(screen.getByTitle("Logga ut")).toBeInTheDocument();
+  });
+
+  it("should call toast when logout clicked", () => {
+    render(<Header />);
+    fireEvent.click(screen.getByTitle("Logga ut"));
+    expect(toast).toHaveBeenCalled();
   });
 });
