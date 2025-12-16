@@ -29,8 +29,8 @@ describe("removeTodo", () => {
     const result = removeTodo(todos, "1");
 
     expect(result).toEqual([
-      { _id: "2", text: "Second todo", done: false },
-      { _id: "3", text: "Third todo", done: false },
+      { _id: "2", text: "Second todo", done: false, order: 0, priority: "low", category: "", dueDate: null },
+      { _id: "3", text: "Third todo", done: false, order: 0, priority: "low", category: "", dueDate: null },
     ]);
     expect(result).toHaveLength(2);
   });
