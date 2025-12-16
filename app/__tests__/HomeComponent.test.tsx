@@ -30,9 +30,9 @@ describe("Home Page", () => {
   it("should navigate to /todo-app on successful login", async () => {
     render(<Home />);
 
-    const usernameInput = screen.getByLabelText(/Namn/i);
-    const passwordInput = screen.getByLabelText(/Lösenord/i);
-    const submitButton = screen.getByRole("button", { name: /Logga in/i });
+    const usernameInput = screen.getByLabelText(/Name/i);
+    const passwordInput = screen.getByLabelText(/Password/i);
+    const submitButton = screen.getByRole("button", { name: /Login/i });
 
     fireEvent.change(usernameInput, { target: { value: "testUser" } });
     fireEvent.change(passwordInput, { target: { value: "testPassword" } });
@@ -46,7 +46,7 @@ describe("Home Page", () => {
   it("should show validation errors for empty fields", async () => {
     render(<Home />);
 
-    const submitButton = screen.getByRole("button", { name: /Logga in/i });
+    const submitButton = screen.getByRole("button", { name: /Login/i });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
