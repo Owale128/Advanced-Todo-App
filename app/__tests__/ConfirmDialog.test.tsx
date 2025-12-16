@@ -33,4 +33,10 @@ describe("ConfirmDialog Component", () => {
     fireEvent.click(screen.getByText("Ja"));
     expect(mockOnConfirm).toHaveBeenCalled();
   });
+
+  it("should call onCancel when cancel clicked", () => {
+    render(<ConfirmDialog {...defaultProps} />);
+    fireEvent.click(screen.getByText("Avbryt"));
+    expect(mockOnCancel).toHaveBeenCalled();
+  });
 });
