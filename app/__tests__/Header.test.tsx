@@ -49,4 +49,9 @@ describe("Header Component", () => {
       expect(screen.getByText("testuser")).toBeInTheDocument();
     });
   });
+
+  it("should show logout button", () => {
+    render(<Header />);
+    expect(screen.getByTitle("Logga ut")).toBeInTheDocument();
+  });
 });
