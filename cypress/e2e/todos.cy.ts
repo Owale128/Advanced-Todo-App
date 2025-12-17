@@ -23,4 +23,19 @@ describe("Todo Operations", () => {
 
     cy.contains(todoText).should("be.visible");
   });
+
+  it("should toggle todo as done", () => {
+    const todoText = "Toggle Todo " + Date.now();
+
+    cy.contains("Medium").click();
+    cy.get('input[placeholder="Lägg till en uppgift..."]').type(todoText);
+    cy.get('button[type="submit"]').click();
+
+    cy.contains(todoText)
+      .parent()
+      .parent()
+      .find('input[type="checkbox"]')
+      .click();
+    cy.contains(todoText).should("have.class", "line-through");
+  });
 });
