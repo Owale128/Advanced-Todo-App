@@ -55,4 +55,11 @@ describe("SortableTodoItem Component", () => {
     fireEvent.click(screen.getByRole("checkbox"));
     expect(mockToggle).toHaveBeenCalledWith("test-id-1");
   });
+
+  it("should update priority when clicked", () => {
+    renderTodo(mockTodo);
+    const priorityButton = screen.getByTitle(/Prioritet: low/i);
+    fireEvent.click(priorityButton);
+    expect(mockUpdatePriority).toHaveBeenCalledWith("test-id-1", "medium");
+  });
 });
