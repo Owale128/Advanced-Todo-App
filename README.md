@@ -20,6 +20,41 @@ npm run dev
 
 App runs on `http://localhost:3000`.
 
+## Testing
+
+### Unit & Integration Tests
+
+Jest and React Testing Library for component and utility testing. Core functionality was developed using TDD.
+
+```bash
+npm test
+```
+
+**26 tests across 9 test suites** covering:
+- Authentication (login/register)
+- Todo CRUD operations
+- Priority cycling
+- Delete confirmation dialog
+- Form validation
+
+### E2E Tests
+
+Cypress for end-to-end testing of complete user flows.
+
+```bash
+npm run dev
+
+npm run cypress
+
+npm run cypress:headless
+```
+
+**E2E test coverage:**
+- User registration and login
+- Adding, toggling, and deleting todos
+- Priority management
+- Confirmation dialogs
+
 ## Run with Docker (build it yourself)
 
 1) Install a Docker runtime (Docker Desktop or Colima).  
