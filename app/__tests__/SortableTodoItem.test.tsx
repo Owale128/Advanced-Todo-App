@@ -62,4 +62,10 @@ describe("SortableTodoItem Component", () => {
     fireEvent.click(priorityButton);
     expect(mockUpdatePriority).toHaveBeenCalledWith("test-id-1", "medium");
   });
+
+  it("should show delete confirmation dialog", () => {
+    renderTodo(mockTodo);
+    fireEvent.click(screen.getByText("x"));
+    expect(screen.getByText("Ta bort todo?")).toBeInTheDocument();
+  });
 });
