@@ -28,4 +28,9 @@ describe("Authentication", () => {
     cy.url().should("include", "/todo-app");
     cy.contains(testUser.username).should("be.visible");
   });
+
+  it("should show validation error for empty fields", () => {
+    cy.get('button[type="submit"]').click();
+    cy.contains("Username must be at least 2 characters").should("be.visible");
+  });
 });
