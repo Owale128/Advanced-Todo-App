@@ -19,4 +19,13 @@ describe("Authentication", () => {
 
     cy.url().should("include", "/todo-app");
   });
+
+  it("should login with existing user", () => {
+    cy.get('input[name="username"]').type(testUser.username);
+    cy.get('input[name="password"]').type(testUser.password);
+    cy.get('button[type="submit"]').click();
+
+    cy.url().should("include", "/todo-app");
+    cy.contains(testUser.username).should("be.visible");
+  });
 });
