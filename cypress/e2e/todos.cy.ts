@@ -56,4 +56,18 @@ describe("Todo Operations", () => {
 
     cy.contains(todoText).should("not.exist");
   });
+
+  it("should cycle through priorities", () => {
+    const todoText = "Priority Todo " + Date.now();
+
+    cy.contains("Låg").click();
+    cy.get('input[placeholder="Lägg till en uppgift..."]').type(todoText);
+    cy.get('button[type="submit"]').click();
+
+    cy.contains(todoText)
+      .parent()
+      .parent()
+      .find('[title*="Prioritet"]')
+      .click();
+  });
 });
