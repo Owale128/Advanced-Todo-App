@@ -38,4 +38,22 @@ describe("Todo Operations", () => {
       .click();
     cy.contains(todoText).should("have.class", "line-through");
   });
+
+  it("should delete a todo with confirmation", () => {
+    const todoText = "Delete Todo " + Date.now();
+
+    cy.contains("Hög").click();
+    cy.get('input[placeholder="Lägg till en uppgift..."]').type(todoText);
+    cy.get('button[type="submit"]').click();
+
+    cy.contains(todoText).parent().parent().contains("x").click();
+    cy.contains("Ta bort todo?").should("be.visible");
+
+    cy.contains("Ta bort todo?")
+      .parent()
+      .contains("button", "Ta bort")
+      .click();
+
+    cy.contains(todoText).should("not.exist");
+  });
 });
