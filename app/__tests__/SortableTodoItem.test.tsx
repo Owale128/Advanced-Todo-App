@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import SortableTodoItem from "../components/sortableTodoItem/SortableTodoItem";
 import { Todo } from "../models/Todo";
 import { DndContext } from "@dnd-kit/core";
@@ -48,5 +48,11 @@ describe("SortableTodoItem Component", () => {
   it("should render todo text", () => {
     renderTodo(mockTodo);
     expect(screen.getByText("Test Todo")).toBeInTheDocument();
+  });
+
+  it("should toggle when checkbox clicked", () => {
+    renderTodo(mockTodo);
+    fireEvent.click(screen.getByRole("checkbox"));
+    expect(mockToggle).toHaveBeenCalledWith("test-id-1");
   });
 });
