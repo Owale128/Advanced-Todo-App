@@ -68,4 +68,11 @@ describe("SortableTodoItem Component", () => {
     fireEvent.click(screen.getByText("x"));
     expect(screen.getByText("Ta bort todo?")).toBeInTheDocument();
   });
+
+  it("should delete when confirmed", () => {
+    renderTodo(mockTodo);
+    fireEvent.click(screen.getByText("x"));
+    fireEvent.click(screen.getByText("Ta bort"));
+    expect(mockRemove).toHaveBeenCalledWith("test-id-1");
+  });
 });
