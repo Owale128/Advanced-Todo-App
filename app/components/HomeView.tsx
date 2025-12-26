@@ -17,7 +17,7 @@ const HomeView = ({ form, onSubmit }: HomeViewProps) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="backdrop-blur-sm p-8 rounded-lg space-y-6 w-full max-w-sm shadow-2xl relative"
+        className="backdrop-blur-md p-8 rounded-lg space-y-6 w-full max-w-sm shadow-2xl relative"
       >
         {form.formState.isSubmitting && (
           <div className="absolute inset-0 bg-black/50 rounded-lg flex items-center justify-center z-10">
@@ -29,9 +29,9 @@ const HomeView = ({ form, onSubmit }: HomeViewProps) => {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg">Name</FormLabel>
+              <FormLabel className="text-lg text-black">Name</FormLabel>
               <FormControl>
-                <Input placeholder="" type="text" className="text-white" {...field} />
+                <Input placeholder="" type="text" className="text-black" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -42,11 +42,30 @@ const HomeView = ({ form, onSubmit }: HomeViewProps) => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg">Password</FormLabel>
+              <FormLabel className="text-lg text-black">Password</FormLabel>
               <FormControl>
-                <Input placeholder="" type="password" className="text-white" {...field} />
+                <Input placeholder="" type="password" className="text-black" {...field} />
               </FormControl>
               <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="rememberMe"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-center space-x-3 space-y-0">
+              <FormControl>
+                <input
+                  type="checkbox"
+                  checked={field.value}
+                  onChange={field.onChange}
+                  className="w-4 h-4 cursor-pointer accent-blue-600"
+                />
+              </FormControl>
+              <FormLabel className="text-sm font-normal cursor-pointer">
+                Håll mig inloggad
+              </FormLabel>
             </FormItem>
           )}
         />
