@@ -6,7 +6,7 @@ import User from "@/app/models/User";
 
 export async function POST(request: NextRequest) {
   try {
-    const { username, password } = await request.json();
+    const { username, password, rememberMe } = await request.json();
 
     if (!username || !password) {
       return NextResponse.json(
@@ -33,10 +33,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const days = rememberMe ? 30 : 7;
+    const maxAge = 60 * 60 * 24 * days;
+
     const token = jwt.sign(
       { userId: user._id, username: user.username },
       process.env.JWT_SECRET!,
-      { expiresIn: "7d" }
+      { expiresIn: `${days}d` }
     );
 
     const response = NextResponse.json(
@@ -46,9 +49,9 @@ export async function POST(request: NextRequest) {
 
     response.cookies.set("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
       sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge,
       path: "/",
     });
 
