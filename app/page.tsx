@@ -16,6 +16,7 @@ export default function Home() {
     defaultValues: {
       username: "",
       password: "",
+      rememberMe: false,
     },
   });
 
@@ -24,6 +25,7 @@ export default function Home() {
       const response = await axios.post("/api/auth/login", {
         username: values.username,
         password: values.password,
+        rememberMe: values.rememberMe,
       });
 
       if (response.status === 200) {
