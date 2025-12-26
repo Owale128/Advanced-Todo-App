@@ -10,7 +10,7 @@ const RegisterView = ({ form, onSubmit }: RegisterViewProps) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="backdrop-blur-sm p-8 rounded-lg space-y-6 w-full max-w-sm shadow-2xl relative"
+        className="backdrop-blur-md p-8 rounded-lg space-y-6 w-full max-w-sm shadow-2xl relative"
       >
         {form.formState.isSubmitting && (
           <div className="absolute inset-0 bg-black/50 rounded-lg flex items-center justify-center z-10">
@@ -22,9 +22,9 @@ const RegisterView = ({ form, onSubmit }: RegisterViewProps) => {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg">Name</FormLabel>
+              <FormLabel className="text-lg text-black">Name</FormLabel>
               <FormControl>
-                <Input placeholder="" type="text" {...field} />
+                <Input placeholder="" type="text" className="text-black" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -35,9 +35,9 @@ const RegisterView = ({ form, onSubmit }: RegisterViewProps) => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg">Password</FormLabel>
+              <FormLabel className="text-lg text-black">Password</FormLabel>
               <FormControl>
-                <Input placeholder="" type="password" {...field} />
+                <Input placeholder="" type="password" className="text-black" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -48,9 +48,9 @@ const RegisterView = ({ form, onSubmit }: RegisterViewProps) => {
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg">Confirm password</FormLabel>
+              <FormLabel className="text-lg text-black">Confirm password</FormLabel>
               <FormControl>
-                <Input placeholder="" type="password" {...field} />
+                <Input placeholder="" type="password" className="text-black" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
