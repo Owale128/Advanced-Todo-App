@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
     "test": "jest",
@@ -30,6 +30,7 @@
     "lucide-react": "^0.554.0",
     "mongoose": "^9.0.0",
     "next": "^16.0.7",
+    "next-pwa": "^5.6.0",
     "next-themes": "^0.4.6",
     "react": "19.2.0",
     "react-dom": "19.2.0",
