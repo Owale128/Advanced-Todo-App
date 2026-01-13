@@ -1,6 +1,6 @@
 # Advanced Todo App
 
-Next.js (app router) todo app with MongoDB, JWT auth, priority levels and drag-and-drop ordering. Run locally or via Docker.
+A Progressive Web App (PWA) built with Next.js (app router), featuring MongoDB, JWT authentication, priority levels, drag-and-drop ordering, and offline support. Installable on desktop and mobile. Run locally or via Docker.
 
 ## Environment variables
 
@@ -54,6 +54,38 @@ npm run cypress:headless
 - Adding, toggling, and deleting todos
 - Priority management
 - Confirmation dialogs
+
+## PWA (Progressive Web App)
+
+This app is a fully functional PWA with offline support and installable capabilities.
+
+**Features:**
+- Offline functionality via service worker
+- Installable on desktop and mobile
+- App-like experience with standalone display mode
+- Automatic caching of assets and pages
+- Custom app icons (192x192 and 512x512)
+
+**Testing PWA locally:**
+
+1. Build and run production mode:
+```bash
+npm run build
+npm start
+```
+
+2. Open in Chrome: `http://localhost:3000`
+
+3. Install the PWA:
+   - **Desktop:** Click the install icon in the address bar or Chrome menu → "Install Advanced Todo App"
+   - **Mobile:** Chrome menu → "Add to Home screen"
+
+4. Verify in DevTools:
+   - Open Chrome DevTools (F12)
+   - Application tab → Manifest (check icons)
+   - Application tab → Service Workers (should show "activated")
+
+**Note:** Service worker is disabled in development mode (`npm run dev`) to avoid caching issues during development.
 
 ## Run with Docker (build it yourself)
 
